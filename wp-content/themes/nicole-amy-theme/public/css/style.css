@@ -7,10 +7,12 @@ body {
   height: 100%;
   margin: 0px;
   padding: 0px;
-  font-family: "Lato", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 16px;
   background-color: #FFFFFF;
-  color: #666666; }
+  color: #666666;
+  position: relative;
+  font-weight: 100; }
   body * {
     box-sizing: border-box; }
   body a {
@@ -18,15 +20,15 @@ body {
     transition: all linear 0.3s;
     color: #666666; }
     body a:hover {
-      color: #b30000; }
+      color: #000; }
 
 /********
 TYPORGRAPHY
 *********/
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
-  margin-bottom: 25px;
-  font-weight: 750; }
+  margin-bottom: 50px;
+  font-weight: 500; }
 
 h1 {
   font-size: 48px;
@@ -55,7 +57,7 @@ h6 {
 p {
   max-width: 800px;
   margin: 0;
-  margin-bottom: 25px; }
+  margin-bottom: 50px; }
 
 .text-center {
   text-align: center; }
@@ -82,12 +84,23 @@ IMAGES
   margin-left: auto;
   margin-right: auto; }
 
+.has-background-image {
+  background-size: cover;
+  background-position: center center; }
+  .has-background-image.paralax {
+    background-attachment: fixed; }
+
 /********
 LAYOUTS
 *********/
 section, header, footer {
   width: 100%;
-  padding: 50px; }
+  padding: 50px;
+  margin-bottom: 50px; }
+  section.no-margin, header.no-margin, footer.no-margin {
+    margin: 0; }
+  section.no-padding, header.no-padding, footer.no-padding {
+    padding: 0; }
   section .container, header .container, footer .container {
     margin: 0 auto;
     width: 100%;
@@ -147,29 +160,71 @@ BUTTONS
   margin-bottom: 10px;
   margin-right: 10px; }
   .btn.btn-primary {
-    background-color: #b30000; }
+    background-color: #000; }
     .btn.btn-primary:hover {
-      color: #b30000;
+      color: #000;
       background-color: #FFF; }
   .btn.btn-secondary {
-    background-color: #00000c; }
+    background-color: #FFF; }
     .btn.btn-secondary:hover {
       background-color: #FFF;
-      color: #00000c; }
+      color: #FFF; }
+
+/********
+SLIDERS
+*********/
+.owl-carousel {
+  display: block;
+  height: 600px;
+  margin-bottom: 50px; }
+  .owl-carousel .owl-stage-outer, .owl-carousel .owl-stage, .owl-carousel .owl-item {
+    height: 100%; }
+  .owl-carousel .owl-item .item {
+    padding: 50px;
+    height: 100%; }
+    .owl-carousel .owl-item .item .slide-overlay {
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 50px;
+      font-size: 46px;
+      line-height: 1.25em; }
+
+/********
+FORMS
+*********/
+form {
+  width: 100%; }
+  form input:focus {
+    outline: none; }
 
 /*========================================
 ============ HEADER STYLES ===============
 =========================================*/
+#main {
+  transition: margin-left linear .5s;
+  margin-top: 100px; }
+  #main.is-slid {
+    margin-left: 300px; }
+
 header {
   width: 100%;
   background: #fafafa;
   height: 100px;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
+  position: fixed;
   top: 0;
-  z-index: 999999;
-  padding: 0px 50px; }
+  z-index: 9;
+  padding: 0px 50px;
+  border-bottom: 1px solid #000; }
+  header .col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
   header .logo-container a {
     display: block;
     width: 100%;
@@ -177,91 +232,146 @@ header {
     display: flex;
     align-items: center;
     justify-content: center; }
-  @media (max-width: 700px) {
-    header .nav-left-container nav .menu-main-container {
-      display: none; }
-    header .nav-left-container nav #mobileNavToggle {
-      display: inline-block !important; } }
-  header .nav-left-container nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: flex-end; }
-    header .nav-left-container nav ul li {
-      display: inline;
-      margin-right: 10px; }
-    header .nav-left-container nav ul .sub-menu {
-      display: none; }
-  header .nav-left-container nav #mobileNavToggle {
-    display: none;
-    font-size: 37px;
-    color: #666666; }
-    header .nav-left-container nav #mobileNavToggle:hover {
-      color: #b30000;
-      cursor: pointer; }
-  @media (max-width: 700px) {
-    header .nav-right-container nav .menu-main-container {
-      display: none; }
-    header .nav-right-container nav #mobileNavToggle {
-      display: inline-block !important; } }
-  header .nav-right-container nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: flex-start; }
-    header .nav-right-container nav ul li {
-      display: inline;
-      margin-right: 10px; }
-    header .nav-right-container nav ul .sub-menu {
-      display: none; }
-  header .nav-right-container nav #mobileNavToggle {
-    display: none;
-    font-size: 37px;
-    color: #666666; }
-    header .nav-right-container nav #mobileNavToggle:hover {
-      color: #b30000;
+  header .nav-toggle-col #open-nav {
+    background: transparent;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    display: block;
+    position: relative; }
+    header .nav-toggle-col #open-nav span,
+    header .nav-toggle-col #open-nav span:before,
+    header .nav-toggle-col #open-nav span:after {
+      cursor: pointer;
+      border-radius: 1px;
+      height: 6px;
+      width: 35px;
+      background: #666666;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      display: block;
+      content: '';
+      transition: all 0.5s ease-in-out; }
+    header .nav-toggle-col #open-nav span:before {
+      top: -10px; }
+    header .nav-toggle-col #open-nav span:after {
+      top: 10px; }
+    header .nav-toggle-col #open-nav.active span {
+      background-color: transparent; }
+      header .nav-toggle-col #open-nav.active span:before {
+        top: 0;
+        transform: rotate(135deg); }
+      header .nav-toggle-col #open-nav.active span:after {
+        top: 0;
+        transform: rotate(-135deg); }
+  header .search-col {
+    align-items: flex-end; }
+    header .search-col i, header .search-col svg {
       cursor: pointer; }
 
-#mobileNav.overlay {
-  height: 0;
+#search-container {
+  background-color: #eeeeee;
+  border-bottom: 1px solid #000;
   width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
   position: fixed;
-  z-index: 999999;
+  top: 100px;
+  visibility: hidden;
+  transition: opacity linear 0.3s; }
+  #search-container.is-open {
+    opacity: 1;
+    visibility: visible;
+    padding: 5px 10px; }
+  #search-container .container {
+    height: 100%; }
+  #search-container form {
+    position: relative;
+    width: 100%;
+    height: 100%; }
+    #search-container form input[type="text"] {
+      width: 100%;
+      outline: none;
+      border: none;
+      height: 100%;
+      padding-left: 10%;
+      background: transparent;
+      font-size: 32px; }
+      #search-container form input[type="text"]:focus {
+        outline: none; }
+    #search-container form #searchsubmit {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: transparent;
+      width: 10%;
+      height: 100%;
+      border: none;
+      font-size: 28px;
+      text-align: center;
+      cursor: pointer;
+      color: #666666; }
+    @media (max-width: 800px) {
+      #search-container form {
+        margin: 0 auto; } }
+
+#mobile-nav {
+  width: 300px;
+  height: 100vh;
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 10;
+  position: fixed;
   left: 0;
   top: 0;
-  background-color: #262626;
-  background-color: rgba(38, 38, 38, 0.9);
+  background-color: #000;
   overflow-x: hidden;
-  transition: 0.5s; }
-  #mobileNav.overlay .overlay-content {
-    position: relative;
-    top: 25%;
+  padding: 25px;
+  transition: all linear 0.5s; }
+  #mobile-nav.is-open {
+    visibility: visible;
+    opacity: 1; }
+  #mobile-nav .inner {
+    background-color: #FFF;
+    color: #000;
+    height: 100%;
     width: 100%;
-    text-align: center;
-    margin-top: 30px; }
-    #mobileNav.overlay .overlay-content ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0; }
-  #mobileNav.overlay a {
-    padding: 8px;
-    text-decoration: none;
-    font-size: 36px;
-    color: #FFF;
-    display: block;
-    transition: 0.3s;
-    font-weight: 750;
-    transition: all linear 0.3s;
-    border: none; }
-    #mobileNav.overlay a:hover {
-      color: #b30000; }
-  #mobileNav.overlay .closebtn {
-    position: absolute;
-    top: 20px;
-    right: 45px;
-    font-size: 60px; }
+    font-size: 26px;
+    padding: 10px; }
+    #mobile-nav .inner .close-nav-container {
+      width: 100%;
+      padding: 15px 5px;
+      background-color: #eeeeee;
+      border-bottom: 1px solid #a700a7; }
+    #mobile-nav .inner .overlay-content {
+      width: 100%; }
+      #mobile-nav .inner .overlay-content ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0; }
+        #mobile-nav .inner .overlay-content ul.sub-menu {
+          display: none; }
+        #mobile-nav .inner .overlay-content ul li {
+          border-bottom: 1px solid #a700a7; }
+          #mobile-nav .inner .overlay-content ul li a {
+            padding: 15px 5px;
+            text-decoration: none;
+            display: block;
+            transition: 0.3s;
+            transition: all linear 0.3s;
+            border: none; }
+            #mobile-nav .inner .overlay-content ul li a:hover {
+              color: #a700a7; }
+      #mobile-nav .inner .overlay-content .closebtn {
+        position: absolute;
+        top: 20px;
+        right: 45px;
+        font-size: 60px; }
 
 /*=========================================
 ============ FOOTER STYLES ================
@@ -278,13 +388,22 @@ footer {
   padding: 25px 0px;
   color: #FFF; }
   #copyright-container a {
-    color: #b30000; }
+    color: #000; }
     #copyright-container a:hover {
       color: #FFF; }
 
 /*=========================================
 =========== HOMEPAGE STYLES ===============
 =========================================*/
+.about-me-section {
+  background-image: url("/wp-content/uploads/2018/02/nicole.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed; }
+  .about-me-section p {
+    margin-bottom: 50px;
+    color: #FFF; }
+
 /*=========================================
 ========= SOCIAL ICONS STYLES =============
 =========================================*/

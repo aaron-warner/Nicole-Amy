@@ -27,6 +27,7 @@ function nav_enqueue_styles()
     wp_enqueue_style('theme-screen-style', get_template_directory_uri() . '/public/css/style' . nav_get_asset_suffix() . '.css');
     wp_enqueue_style('magnific-popup-css', get_template_directory_uri() . '/node_modules/magnific-popup/dist/magnific-popup.css');
     wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css?family=Lato');
+    wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css?family=Montserrat');
 }
 
 /**

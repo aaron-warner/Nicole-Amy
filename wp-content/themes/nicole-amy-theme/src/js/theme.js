@@ -80,39 +80,38 @@ jQuery(function($) {
 
 	/* Owl Carousel */
 
-	var testimonials = $('#testimonials').owlCarousel({
+	var testimonials = $('#home-slider').owlCarousel({
 	    autoplay: true,
 	    autoplayTimeout: 5000,
-	    dots: true,
         items: 1,
         loop: true
 	});
-  
+
+	/* Open Nav Button */
+
+    $('#open-nav').click(function() {
+    	$(this).toggleClass('active');
+    	$('#mobile-nav').toggleClass('is-open');
+    	$('#main').toggleClass('is-slid');
+    });
+
+    /* Open Search Bar */
+
+    $(document).on('click', '#search-bar-toggle', function() {
+    	$('#search-container').toggleClass('is-open');
+    	changeHeightOfMain();
+    });
+
+    var changeHeightOfMain = function() {
+	    if ( $('#search-container').hasClass('is-open') ) {
+	    	var heightOfNav = $('header').outerHeight();
+	    	var heightOfSearchContainer = $('#search-container').outerHeight();
+	    	var newHeight = heightOfNav + heightOfSearchContainer;
+	    	$('#main').css('margin-top', newHeight);
+	    } else {
+	    	var heightOfNav = $('header').outerHeight();
+	    	$('#main').css('margin-top', heightOfNav);
+	    }
+	}
+
 });
-
-/* Instagram Feed */
-var feed = new Instafeed({
-    get: 'tagged',
-    tagName: 'awesome',
-    clientId: 'd642a7a4c78c423ab116ec13982d3124',
-    accessToken: '6098617759.d642a7a.c8c9652e6c9842dca576b7688c221910',
-    template: '<a href="{{link}}"><img src="{{image}}" /></a>'
-});
-feed.run();
-
-// var userFeed = new Instafeed({
-//     get: 'user',
-//     userId: '528837223',
-//     accessToken: '6098617759.d642a7a.c8c9652e6c9842dca576b7688c221910'
-// });
-// userFeed.run();
-
-/* Open when someone clicks on the span element */
-function openNav() {
-    document.getElementById("mobileNav").style.height = "100%";
-}
-
-/* Close when someone clicks on the "x" symbol inside the overlay */
-function closeNav() {
-    document.getElementById("mobileNav").style.height = "0%";
-}
