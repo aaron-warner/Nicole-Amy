@@ -1,0 +1,43 @@
+$defaultBreakPoint: 600px;
+
+$sectionPadding: 50px;
+$bottomMargin: 25px;
+
+$primary: #b30000;
+$primaryRGB: rgb(179, 0, 0);
+$secondary: #00000c;
+
+$darkGrey: #262626;
+$grey: #1a1a1a;
+
+$fontFamily: 'Lato', sans-serif;
+
+$bodyBackgroundColor: #FFFFFF;
+
+$fontColor: #666666;
+
+$bodyFontSize: 16px;
+$h1Size: 48px;
+$h2Size: 36px; 
+$h3Size: 28px;
+$h4Size: 18px;
+$h5Size: $bodyFontSize;
+$h6Size: $bodyFontSize;
+
+$bodyFontLineHeight: 1.25em;
+$h1LineHeight: 1.25em;
+$h2LineHeight: 1.25em;
+$h3LineHeight: 1.25em;
+$h4LineHeight: 1.25em;
+$h5LineHeight: 1.25em;
+$h6LineHeight: 1.25em;
+
+@media (max-width: $defaultBreakPoint) {
+	$bodyFontSize: 12px;
+	$h1Size: 32px;
+	$h2Size: 26px; 
+	$h3Size: 22px;
+	$h4Size: 18px;
+	$h5Size: $bodyFontSize;
+	$h6Size: $bodyFontSize;
+}
