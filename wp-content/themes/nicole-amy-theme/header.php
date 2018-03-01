@@ -18,14 +18,11 @@
 
 <!-- Overlay Nav -->
 <div id="mobile-nav" class="overlay">
-    <div class="inner">
-        <div class="close-nav-container">
-            <span>Close <i class="fas fa-times"></i></span>
-        </div>
-        <!-- Overlay content -->
-        <div class="overlay-content">
-            <?php wp_nav_menu(array('theme_location' => 'main_navigation')) ?>
-        </div>
+    <div class="overlay-content">
+        <?php wp_nav_menu(array('theme_location' => 'main_navigation')) ?>
+    </div>
+    <div class="social-icons">
+        <?php get_template_part( 'partials/social-links' ) ?>
     </div>
 </div>
 
@@ -34,17 +31,17 @@
 <header class="no-margin">
     <div class="container">
         <div class="flex-grid">
-            <div class="col col-5 nav-toggle-col">
+            <div class="col nav-toggle-col">
                 <a id="open-nav" href="#"><span></span></a>
             </div>
-            <div class="col col-2">
+            <div class="col">
                 <div class="logo-container">
                     <a href="/">
                         <img src="<?php bloginfo('stylesheet_directory'); ?>/public/images/logo.png">
                     </a>
                 </div>
             </div>
-            <div class="col col-5 search-col">
+            <div class="col search-col">
                 <i class="fas fa-search" id="search-bar-toggle"></i>
             </div>
         </div>

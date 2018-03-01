@@ -80,7 +80,14 @@ jQuery(function($) {
 
 	/* Owl Carousel */
 
-	var testimonials = $('#home-slider').owlCarousel({
+	var homeSlider = $('#home-slider').owlCarousel({
+	    autoplay: true,
+	    autoplayTimeout: 5000,
+        items: 1,
+        loop: true
+	});
+
+	var testimonialSlider = $('#testimonial-slider').owlCarousel({
 	    autoplay: true,
 	    autoplayTimeout: 5000,
         items: 1,
@@ -93,6 +100,13 @@ jQuery(function($) {
     	$(this).toggleClass('active');
     	$('#mobile-nav').toggleClass('is-open');
     	$('#main').toggleClass('is-slid');
+    });
+
+    /* Show Sub Menu Content */
+
+    $('.menu-item-has-children').click(function(event) {
+    	event.preventDefault();
+    	$(this).find('.sub-menu').toggleClass('is-open');
     });
 
     /* Open Search Bar */

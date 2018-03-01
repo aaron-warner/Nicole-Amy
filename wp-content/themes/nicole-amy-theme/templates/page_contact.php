@@ -4,9 +4,9 @@
 
 <?php get_template_part( 'partials/page-header'); ?>
 
-<section id="directions-container">
+<section id="contact-form-container" class="no-margin">
 	<div class="container">
-		<h1>Contact</h1>
+		<?php get_template_part( 'partials/generic-contact-form' ) ?>
 	</div>
 </section>
 

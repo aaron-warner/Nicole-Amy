@@ -101,9 +101,14 @@ section, header, footer {
     margin: 0; }
   section.no-padding, header.no-padding, footer.no-padding {
     padding: 0; }
+  section.odd, header.odd, footer.odd {
+    background-color: #FFF; }
+  section.even, header.even, footer.even {
+    background-color: #eeeeee; }
   section .container, header .container, footer .container {
     margin: 0 auto;
     width: 100%;
+    height: 100%;
     max-width: 1300px; }
 
 .margin-centered {
@@ -116,7 +121,8 @@ section, header, footer {
 .flex-grid {
   display: flex;
   flex-wrap: wrap;
-  overflow: hidden; }
+  overflow: hidden;
+  height: 100%; }
   .flex-grid .col {
     flex: 1; }
     .flex-grid .col.col-1 {
@@ -175,7 +181,6 @@ SLIDERS
 *********/
 .owl-carousel {
   display: block;
-  height: 600px;
   margin-bottom: 50px; }
   .owl-carousel .owl-stage-outer, .owl-carousel .owl-stage, .owl-carousel .owl-item {
     height: 100%; }
@@ -200,6 +205,23 @@ FORMS
 *********/
 form {
   width: 100%; }
+  form .wpcf7-form-control-wrap {
+    width: 100%; }
+  form p {
+    margin: 0;
+    margin-bottom: 15px;
+    max-width: 100%; }
+  form label {
+    margin-bottom: 10px; }
+  form input, form select, form textarea {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-bottom: 2px solid #1a1a1a;
+    outline: none;
+    margin-bottom: 10px;
+    background: transparent;
+    color: #666666; }
   form input:focus {
     outline: none; }
 
@@ -232,6 +254,9 @@ header {
     display: flex;
     align-items: center;
     justify-content: center; }
+    header .logo-container a img {
+      height: 100%;
+      max-height: 90px; }
   header .nav-toggle-col #open-nav {
     background: transparent;
     height: 50px;
@@ -268,13 +293,14 @@ header {
   header .search-col {
     align-items: flex-end; }
     header .search-col i, header .search-col svg {
-      cursor: pointer; }
+      cursor: pointer;
+      font-size: 28px; }
 
 #search-container {
   background-color: #eeeeee;
   border-bottom: 1px solid #000;
   width: 100%;
-  height: 100px;
+  height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -282,11 +308,13 @@ header {
   position: fixed;
   top: 100px;
   visibility: hidden;
+  z-index: 9;
   transition: opacity linear 0.3s; }
   #search-container.is-open {
     opacity: 1;
     visibility: visible;
-    padding: 5px 10px; }
+    padding: 5px 10px;
+    height: 100px; }
   #search-container .container {
     height: 100%; }
   #search-container form {
@@ -322,87 +350,333 @@ header {
 #mobile-nav {
   width: 300px;
   height: 100vh;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   visibility: hidden;
   opacity: 0;
   z-index: 10;
   position: fixed;
   left: 0;
   top: 0;
-  background-color: #000;
+  background-color: #1a1a1a;
   overflow-x: hidden;
-  padding: 25px;
   transition: all linear 0.5s; }
   #mobile-nav.is-open {
     visibility: visible;
     opacity: 1; }
-  #mobile-nav .inner {
-    background-color: #FFF;
-    color: #000;
-    height: 100%;
+  #mobile-nav .overlay-content {
+    align-items: flex-start;
+    padding: 25px;
+    overflow-y: scroll;
+    flex: 1; }
+    #mobile-nav .overlay-content ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0; }
+      #mobile-nav .overlay-content ul.sub-menu {
+        visibility: hidden;
+        opacity: 0;
+        height: 0;
+        margin-left: 25px;
+        transition: all linear 0.3s; }
+        #mobile-nav .overlay-content ul.sub-menu.is-open {
+          visibility: visible;
+          opacity: 1;
+          height: auto;
+          transition: all linear 0.3s; }
+      #mobile-nav .overlay-content ul li {
+        position: relative; }
+        #mobile-nav .overlay-content ul li.menu-item-has-children:after {
+          content: '\002B';
+          position: absolute;
+          right: 0px;
+          top: 13px;
+          display: block;
+          width: 30px;
+          height: 30px;
+          background-color: #FFF;
+          color: #1a1a1a;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all linear 0.3s; }
+        #mobile-nav .overlay-content ul li.menu-item-has-children:hover:after {
+          background-color: #666666;
+          color: #FFF; }
+        #mobile-nav .overlay-content ul li a {
+          padding: 15px 5px;
+          text-decoration: none;
+          display: block;
+          transition: 0.3s;
+          transition: all linear 0.3s;
+          border: none;
+          font-size: 24px;
+          line-height: 1.25em; }
+          #mobile-nav .overlay-content ul li a:hover {
+            color: #a700a7; }
+  #mobile-nav .social-icons {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
     width: 100%;
-    font-size: 26px;
-    padding: 10px; }
-    #mobile-nav .inner .close-nav-container {
-      width: 100%;
-      padding: 15px 5px;
-      background-color: #eeeeee;
-      border-bottom: 1px solid #a700a7; }
-    #mobile-nav .inner .overlay-content {
-      width: 100%; }
-      #mobile-nav .inner .overlay-content ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0; }
-        #mobile-nav .inner .overlay-content ul.sub-menu {
-          display: none; }
-        #mobile-nav .inner .overlay-content ul li {
-          border-bottom: 1px solid #a700a7; }
-          #mobile-nav .inner .overlay-content ul li a {
-            padding: 15px 5px;
-            text-decoration: none;
-            display: block;
-            transition: 0.3s;
-            transition: all linear 0.3s;
-            border: none; }
-            #mobile-nav .inner .overlay-content ul li a:hover {
-              color: #a700a7; }
-      #mobile-nav .inner .overlay-content .closebtn {
-        position: absolute;
-        top: 20px;
-        right: 45px;
-        font-size: 60px; }
+    background-color: #FFF;
+    color: #666666;
+    padding: 25px; }
+    #mobile-nav .social-icons ul li:not(:last-child) {
+      margin-right: 10px; }
+    #mobile-nav .social-icons ul li a i, #mobile-nav .social-icons ul li a svg {
+      font-size: 32px; }
 
 /*=========================================
 ============ FOOTER STYLES ================
 =========================================*/
 footer {
   min-height: 300px;
-  background-color: #fafafa; }
+  background-color: #fafafa;
+  background-image: url("/wp-content/uploads/2018/02/footer-bg.png");
+  background-repeat: repeat;
+  color: #666666; }
+  footer .col {
+    padding: 25px; }
+  footer .social-col .social-links li:not(:last-child) {
+    margin-right: 15px; }
+  footer .social-col .social-links li a i, footer .social-col .social-links li a svg {
+    font-size: 36px;
+    transition: all linear 0.3s; }
+    footer .social-col .social-links li a i:hover, footer .social-col .social-links li a svg:hover {
+      color: #eeeeee; }
+  footer .about-col p {
+    margin: 0; }
+  footer .about-col img {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    display: block;
+    margin: 0 auto; }
+  @media (max-width: 1250px) {
+    footer .about-col .image, footer .about-col .text {
+      flex-basis: 100% !important; }
+    footer .about-col .image {
+      margin-bottom: 15px;
+      padding: 0; }
+    footer .about-col .text {
+      text-align: center; } }
+  footer .nav-col ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0; }
+    footer .nav-col ul.sub-menu {
+      margin-left: 25px;
+      padding-top: 10px; }
+    footer .nav-col ul li:not(:last-child) {
+      margin-bottom: 10px; }
+    footer .nav-col ul li a {
+      transition: all linear 0.3s; }
+      footer .nav-col ul li a:hover {
+        color: #a700a7; }
 
-#copyright-container {
+.copyright-banner {
   width: 100%;
-  float: left;
   background-color: #000;
   text-align: center;
   padding: 25px 0px;
   color: #FFF; }
-  #copyright-container a {
-    color: #000; }
-    #copyright-container a:hover {
-      color: #FFF; }
+  .copyright-banner a {
+    color: #FFF; }
+    .copyright-banner a:hover {
+      color: #a700a7; }
+
+/*=========================================
+=========== PAGE HEADER STYLES ============
+=========================================*/
+.page-header {
+  background-color: #1a1a1a;
+  color: #FFF; }
+  .page-header .col {
+    padding: 50px; }
+  .page-header .image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+    .page-header .image img {
+      display: block;
+      width: 100%;
+      height: auto; }
+  .page-header .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+    .page-header .text .sub-heading {
+      font-size: 24px;
+      line-height: 1.25em;
+      display: block; }
 
 /*=========================================
 =========== HOMEPAGE STYLES ===============
 =========================================*/
-.about-me-section {
+#home-slider {
+  height: 600px; }
+
+#services-tiles .col {
+  position: relative;
+  padding: 50px;
+  min-height: 200px; }
+  #services-tiles .col#photography {
+    background-image: url("/wp-content/uploads/2018/02/photography.jpg"); }
+  #services-tiles .col#web-dev {
+    background-image: url("/wp-content/uploads/2018/02/web-dev.jpg"); }
+  #services-tiles .col#weddings {
+    background-image: url("/wp-content/uploads/2018/02/weddings.jpg"); }
+  #services-tiles .col#videography {
+    background-image: url("/wp-content/uploads/2018/02/videography.jpg"); }
+  #services-tiles .col .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    transition: all linear 0.3s; }
+    #services-tiles .col .overlay:hover {
+      background: rgba(0, 0, 0, 0.5); }
+      #services-tiles .col .overlay:hover span {
+        background: rgba(0, 0, 0, 0.8);
+        text-align: center;
+        padding: 5px 10px; }
+    #services-tiles .col .overlay a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: crosshair; }
+    #services-tiles .col .overlay span {
+      color: #FFF; }
+
+#about-me {
   background-image: url("/wp-content/uploads/2018/02/nicole.jpg");
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed; }
-  .about-me-section p {
-    margin-bottom: 50px;
-    color: #FFF; }
+  padding: 25px; }
+  #about-me .overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 25px; }
+  #about-me .image img {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    margin-bottom: 15px; }
+  #about-me .image .social-links {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center; }
+    #about-me .image .social-links li:not(:last-child) {
+      margin-right: 15px; }
+    #about-me .image .social-links li a {
+      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #a700a7;
+      transition: all linear 0.3s; }
+      #about-me .image .social-links li a:hover {
+        background-color: #740074; }
+      #about-me .image .social-links li a i, #about-me .image .social-links li a svg {
+        font-size: 24px;
+        color: #FFF; }
+  #about-me .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+
+#testimonials {
+  background-color: #1a1a1a; }
+  #testimonials .opening-quote .quote-col, #testimonials .closing-quote .quote-col {
+    display: flex; }
+    #testimonials .opening-quote .quote-col i, #testimonials .opening-quote .quote-col svg, #testimonials .closing-quote .quote-col i, #testimonials .closing-quote .quote-col svg {
+      font-size: 36px; }
+  #testimonials .opening-quote .quote-col {
+    justify-content: flex-start; }
+  #testimonials .closing-quote .quote-col {
+    justify-content: flex-end; }
+  #testimonials #testimonial-slider {
+    margin: 50px 0px; }
+    #testimonials #testimonial-slider .item {
+      padding: 0px; }
+      #testimonials #testimonial-slider .item .slide-overlay span {
+        font-size: 16px; }
+
+/*=========================================
+=========== GALLERY PAGE STYLES ===========
+=========================================*/
+#gallery-grid-container a {
+  width: 25%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  padding: 25px;
+  border: none; }
+  #gallery-grid-container a:hover .overlay {
+    opacity: 1; }
+  #gallery-grid-container a:focus {
+    outline: 1px solid #000; }
+  @media screen and (max-width: 1300px) {
+    #gallery-grid-container a {
+      width: 33.33%; } }
+  @media screen and (max-width: 1000px) {
+    #gallery-grid-container a {
+      width: 50%; } }
+  @media screen and (max-width: 650px) {
+    #gallery-grid-container a {
+      width: 100%; } }
+  #gallery-grid-container a img {
+    width: 100%;
+    height: 320px; }
+    @media screen and (max-width: 650px) {
+      #gallery-grid-container a img {
+        width: 100%;
+        height: auto; } }
+  #gallery-grid-container a .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: calc(100% - 50px);
+    width: calc(100% - 50px);
+    opacity: 0;
+    transition: .5s ease;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 25px; }
+    #gallery-grid-container a .overlay i {
+      font-size: 60px;
+      color: #FFF; }
+      #gallery-grid-container a .overlay i:hover {
+        color: #FFF; }
+
+/* Ensure magnific popup loghtbox shows above everything */
+.mfp-wrap.mfp-gallery {
+  z-index: 9999999 !important; }
+
+/*=========================================
+=========== CONTACT PAGE STYLES ===========
+=========================================*/
+#contact-form-container input, #contact-form-container select, #contact-form-container textarea {
+  background-color: #eeeeee; }
 
 /*=========================================
 ========= SOCIAL ICONS STYLES =============
@@ -511,3 +785,7 @@ footer {
     transform: translate3d(0, -4px, 0); }
   90% {
     transform: translate3d(0, -2px, 0); } }
+
+/*---------------------------------------
+  Service section              
+-----------------------------------------*/
